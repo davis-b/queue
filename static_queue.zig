@@ -150,11 +150,6 @@ pub fn Queue(comptime T: type, comptime maxItems: usize) type {
 
         /// Returns number of filled slots in Queue
         pub fn count(self: *Self) usize {
-            //    var n: usize = 0;
-            //    for (self.items) |i| {
-            //        if (i != null) n += 1;
-            //    }
-            //    return n;
             if (self.putPos > self.takePos) {
                 return self.putPos - self.takePos;
             }
@@ -164,7 +159,6 @@ pub fn Queue(comptime T: type, comptime maxItems: usize) type {
                 if (self.items[self.putPos] != null) return maxItems;
                 return 0;
             }
-            // self.takePos > self.putPos because putPos has circled around the array
             return (self.putPos + maxItems) - self.takePos;
         }
 
